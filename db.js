@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize')
+const ProdsModel = require ('./models/Prods')
 const ClientModel = require ('./models/Clients')
 
 const sequelize = new Sequelize('aupris','root', null, {
@@ -7,6 +8,8 @@ const sequelize = new Sequelize('aupris','root', null, {
 })
 
 const Client = ClientModel(sequelize, Sequelize); //conectando o bd
+const Prods = ProdsModel(sequelize, Sequelize);
+const ProCli = [Prods, Client];
 
 sequelize.sync({ force: false})
     .then(() => {
@@ -14,5 +17,5 @@ sequelize.sync({ force: false})
 })
 
 module.exports = { //Exportando o bd
-    Client
+    ProCli
 }
