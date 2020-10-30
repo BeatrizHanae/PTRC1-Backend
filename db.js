@@ -9,7 +9,7 @@ const sequelize = new Sequelize('aupris','root', null, {
 
 const Client = ClientModel(sequelize, Sequelize); //conectando o bd
 const Prods = ProdsModel(sequelize, Sequelize);
-const ProCli = [Prods, Client];
+const ProCli = [Prods, Client]; //array com os models de produtos e de clientes
 
 sequelize.sync({ force: false})
     .then(() => {
