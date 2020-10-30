@@ -1,6 +1,7 @@
 const express = require ("express");
 const bcrypt = require ('bcryptjs');
-const {Client} = require('../db');
+const {ProCli} = require('../db');
+const Client = ProCli[1];
 const moment = require('moment');
 const jwt = require('jwt-simple');
 
