@@ -13,7 +13,7 @@ const ProCli = [Prods, Client];
 
 sequelize.sync({ force: false})
     .then(() => {
-    console.log('Tabela Criada')
+    console.log('Tabelas Criadas')
 })
 
 module.exports = { //Exportando o bd
