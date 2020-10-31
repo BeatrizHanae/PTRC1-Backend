@@ -9,12 +9,4 @@ exports.registerProd = async (req, res) => {
     res.json(prod)
 }
 
-const createToken = (prod) =>{ 
-    const payload = {
-        prodId: prod.id,
-        cretedAt: moment().unix(), //tempo de criação do token
-        expiredAt: moment().add(5, 'minutes').unix() //o tempo de expiração do token
-    }
 
-    return jwt.encode(payload, 'token')
-}
