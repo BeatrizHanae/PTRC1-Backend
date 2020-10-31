@@ -9,4 +9,13 @@ exports.registerProd = async (req, res) => {
     res.json(prod)
 }
 
-
+exports.pesquisarProd = async (req, res) => {
+    const prod = await Prods.findAll({
+        where: {NOME: req.body.NOME}
+    })
+    if(prod){
+    	res.json(prod)
+    }
+    else{
+        res.json({error: 'Produto não existe.'})}
+}
