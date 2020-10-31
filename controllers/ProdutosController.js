@@ -1,6 +1,5 @@
 const express = require ("express");
-const {ProCli} = require('../db');
-const Prods = ProCli[0];
+const {Prods} = require('../db');
 const moment = require('moment');
 const jwt = require('jwt-simple');
 
