@@ -18,3 +18,8 @@ exports.pesquisarProd = async (req, res) => {
     else{
         res.json({error: 'Produto não existe.'})}
 }
+
+exports.listarProds = async (req, res) => {
+    const prod = await Prods.findAll(req.body)
+    res.json(prod)
+}
