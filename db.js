@@ -1,18 +1,18 @@
 const Sequelize = require('sequelize')
-const ClientModel = require ('./models/Clients')
+const db = {} 
 
 const sequelize = new Sequelize('aupris','root', null, {
-    host: '127.0.0.1',
-    dialect: 'mysql'
+    host: 'localhost',
+    dialect: 'mysql',
+    operatorsAliases: false
 })
-
-const Client = ClientModel(sequelize, Sequelize); //conectando o bd
 
 sequelize.sync({ force: false})
     .then(() => {
     console.log('Tabela Criada')
 })
 
-module.exports = { //Exportando o bd
-    Client
-}
+db.sequelize = sequelize
+db.Sequelize = Sequelize
+
+module.exports = db

@@ -1,9 +1,12 @@
 const express = require ("express")
-
-const router = express.Router();
+const center = express.Router();
 
 const apiClients = require ('./api/apiClients');
+const cors = require('cors')
 
-router.use('/apiClients', apiClients); 
+center.use(cors())
 
-module.exports = router;
+//rota para o cliente
+center.use('/apiClients', apiClients); 
+
+module.exports = center;

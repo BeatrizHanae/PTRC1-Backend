@@ -1,14 +1,14 @@
-module.exports = (sequelize, DataTypes) => {
-    const clientes = sequelize.define('login_clientes', {
-        NOME: DataTypes.STRING,
-        USERNAME: DataTypes.STRING,
-        SENHA: DataTypes.STRING,
-        CPF: DataTypes.INTEGER,
+const Sequelize = require('sequelize')
+const db = require('../db')
+
+module.exports = db.sequelize.define('login_clientes', {
         ID_CLIENTE: {
-            type: DataTypes.INTEGER,
+            type: Sequelize.INTEGER,
             primaryKey: true,
             autoIncrement: true,
-        }
-    })
-    return clientes;
-}
+        },
+        NOME:{ type: Sequelize.STRING},
+        USERNAME: { type: Sequelize.STRING},
+        CPF: { type: Sequelize.STRING},
+        SENHA: { type: Sequelize.STRING}
+})

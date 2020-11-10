@@ -1,46 +1,66 @@
-const express = require ("express");
 const bcrypt = require ('bcryptjs');
-const {Client} = require('../db');
-const moment = require('moment');
-const jwt = require('jwt-simple');
+const Client = require('../models/Clients')
+const jwt = require('jsonwebtoken');
 
+process.env.SECRET_KEY = 'secret'
 
-exports.registerClient = async (req, res) => {
-
-    req.body.SENHA = bcrypt.hashSync(req.body.SENHA);
-    const client = await Client.create(req.body)
-    res.json(client)
-}
-
-exports.loginClient =  async (req, res) => {
-    const client = await Client.findOne({
-        where: {USERNAME: req.body.USERNAME}
-    })
-    if(client){ //se o usuário existe faz a comparação de senha inserida com a criptografada
-        const same = bcrypt.compareSync(req.body.SENHA, client.SENHA) 
-        if(same){
-            res.json({success: createToken(client)})
-        }else{
-            res.json({error: 'Senha incorreta!'})
+//Cadastro do cliente
+exports.registerClient = (req, res) => {
+    const userData = {
+      NOME: req.body.NOME,
+      USERNAME: req.body.USERNAME,
+      CPF: req.body.CPF,
+      SENHA: req.body.SENHA
+      
+    }
+     Client.findOne({
+        where: {
+            USERNAME: req.body.USERNAME
         }
-    }else{
-        res.json({error: 'Usuário não existe.'})
-    }
-}
-
-const createToken = (client) =>{ 
-    const payload = {
-        clientId: client.id,
-        cretedAt: moment().unix(), //tempo de criação do token
-        expiredAt: moment().add(5, 'minutes').unix() //o tempo de expiração do token
-    }
-
-    return jwt.encode(payload, 'token')
-}
-
-exports.deleteClient = async (req, res) =>{
-    await Client.destroy({
-        where: {id: req.params.id}
     })
-    res.json({success:'Apagado' });
+
+    .then(user => {
+        if(!user) {
+            bcrypt.hash(req.body.SENHA, 10, (err, hash) => {
+                userData.SENHA = hash
+                Client.create(userData)
+                  .then(user => {
+                    res.json({ status: user.USERNAME + ' Registered!' })
+                  })
+                  .catch(err => {
+                    res.send('error: ' + err)
+                  })
+              })
+            } else {
+                res.json({ error: 'User already exists' })
+              }
+        })
+        .catch(err => {
+            res.send('error: ' + err)
+        })
+}
+
+//Login do cliente  
+exports.loginClient =  (req, res) => {
+    Client.findOne({
+        where: {
+            USERNAME: req.body.USERNAME
+        }
+    })
+    .then(client => {
+        if(client){ //se o usuário existe faz a comparação de senha inserida com a criptografada
+            if(bcrypt.compareSync(req.body.SENHA, client.SENHA)){
+                let token = jwt.sign(client.dataValues, process.env.SECRET_KEY, {
+                    expiresIn: 1440
+                })
+                res.send(token)
+            }
+        } else {
+            res.status(400).json({error: 'Usuário não existe'})
+        }
+    })
+    .catch(err => {
+        res.status(400).json({error: err })
+        console.log('-' + err)
+    })
 }
