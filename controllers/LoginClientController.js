@@ -63,4 +63,5 @@ exports.loginClient =  (req, res) => {
         res.status(400).json({error: err })
         console.log('-' + err)
     })
+
 }
