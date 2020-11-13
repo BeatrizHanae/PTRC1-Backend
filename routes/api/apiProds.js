@@ -10,6 +10,6 @@ router.post('/register', authController.registerProd);
 router.post('/pesquisa', authController.pesquisarProd);
 
 //post listar todos os produtos
-router.post('/listar_produtos', authController.listarProds);
+router.get('/listar_produtos', authController.listarProds);
 
 module.exports = router;
