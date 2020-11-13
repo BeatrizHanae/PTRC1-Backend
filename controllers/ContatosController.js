@@ -1,5 +1,3 @@
-const Prods = require('../models/Contatos')
-const moment = require('moment');
 const Contatos = require('../models/Contatos');
 
 exports.registerContato = async (req, res) => {
