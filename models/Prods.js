@@ -10,4 +10,5 @@ module.exports = db.sequelize.define('produtos', {
         NOME: { type: Sequelize.STRING},
         VALOR: { type: Sequelize.FLOAT},
         QUANTIDADE: { type: Sequelize.INTEGER},
+        IMAGEM: {type: Sequelize.STRING},
     })
