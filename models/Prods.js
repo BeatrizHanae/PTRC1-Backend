@@ -2,12 +2,12 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 module.exports = db.sequelize.define('produtos', {
-        ID_CLIENTE: {
+        NOME: { type: Sequelize.STRING},
+        ID_PRODUCT: {
             type: Sequelize.INTEGER,
             primaryKey: true,
-            autoIncrement: true,
+            autoIncrement: false,
         },
-        NOME: { type: Sequelize.STRING},
         VALOR: { type: Sequelize.FLOAT},
         QUANTIDADE: { type: Sequelize.INTEGER},
         IMAGEM: {type: Sequelize.STRING},
