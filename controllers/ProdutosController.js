@@ -11,7 +11,7 @@ exports.pesquisarProd = async (req, res) => {
     const prod = await Prods.findAll({
         where: {NOME: req.body.NOME}
     })
-    if(prod){
+    if(prod == ''){
     	res.json(prod)
     }
     else{
