@@ -1,6 +1,6 @@
-const Sup = require('../models/SuporteTreinamento');
+const Trein = require('../models/SuporteTreinamento');
 
-exports.SupTrein = async (req, res) => {
+exports.RegisterTrein = async (req, res) => {
 
     const trein = await Trein.create(req.body)
     res.json(trein)
