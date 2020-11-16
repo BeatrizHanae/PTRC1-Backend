@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-module.exports = db.sequelize.define('suporte', {
+module.exports = db.sequelize.define('suporte_treinamento', {
         DATA: { type: Sequelize.INTEGER},
         HORA: { type: Sequelize.INTEGER},
         NOME_CLIENTE: { type: Sequelize.STRING},
