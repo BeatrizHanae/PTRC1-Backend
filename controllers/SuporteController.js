@@ -17,7 +17,7 @@ exports.RegisterTrein = async (req, res) => {
     }
 }
 
-exports.RegisterMan = async (req, res) => {
+exports.RegisterManutenção = async (req, res) => {
     const man = await Man.findOne({
         where:{
             DATA: req.body.DATA,
