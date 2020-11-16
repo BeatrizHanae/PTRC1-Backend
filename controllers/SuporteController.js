@@ -4,7 +4,7 @@ const Man = require('../models/SuporteManutenção');
 exports.RegisterTrein = async (req, res) => {
     const trein = await Trein.findOne({
         where:{
-            DATA: req.body.NOME,
+            DATA: req.body.DATA,
             HORA: req.body.HORA
         }
     })
@@ -20,7 +20,7 @@ exports.RegisterTrein = async (req, res) => {
 exports.RegisterMan = async (req, res) => {
     const man = await Man.findOne({
         where:{
-            DATA: req.body.NOME,
+            DATA: req.body.DATA,
             HORA: req.body.HORA
         }
     })
