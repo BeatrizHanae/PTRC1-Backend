@@ -1,6 +1,7 @@
 const express = require ("express");
 const apiRoutes = require("./routes/api");
 const bodyParser = require ('body-parser');
+const authController = require('./SuporteController');
 const cors = require('cors');
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(
 )
 
 app.use('/api', apiRoutes);
+app.post('/SuporteTreinamento', authController.SupTrein);
 
 app.listen(5000, function() {
     console.log('Servidor conectado!')
