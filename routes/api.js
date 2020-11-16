@@ -3,6 +3,7 @@ const center = express.Router();
 const apiUsers = require ('./api/apiUsers');
 const apiProds = require ('./api/apiProds');
 const apiContatos = require ('./api/apiContatos');
+const apiSuporte = require ('./api/apiSuporte');
 const cors = require('cors')
 
 center.use(cors())
@@ -16,6 +17,8 @@ center.use('/apiProducts', apiProds);
 //rota para o contato
 center.use('/apiContatos', apiContatos);
 
+//rota para o suporte
+center.use('/apiSuporte', apiSuporte );
 
 module.exports = center;
 
