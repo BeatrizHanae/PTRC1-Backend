@@ -9,7 +9,7 @@ exports.RegisterTrein = async (req, res) => {
         }
     })
     if(trein){
-        res.json({error: 'Horario já foi marcado por outro.'})
+        res.json({error: 'Horario não disponivel.'})
     }
     else{
         const trein = await Trein.create(req.body)
@@ -25,7 +25,7 @@ exports.RegisterMan = async (req, res) => {
         }
     })
     if(man){
-        res.json({error: 'Horario já foi marcado por outro.'})
+        res.json({error: 'Horario não disponivel.'})
     }
     else{
         const man = await Man.create(req.body)
