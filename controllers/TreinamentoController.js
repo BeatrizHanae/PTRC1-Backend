@@ -1,4 +1,4 @@
-const Sup = require('../models/Suporte');
+const Sup = require('../models/SuporteTreinamento');
 
 exports.SupTrein = async (req, res) => {
 
