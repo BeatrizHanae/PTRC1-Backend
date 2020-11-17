@@ -12,10 +12,11 @@ exports.pesquisarProd = async (req, res) => {
         where: {NOME: req.body.NOME}
     })
     if(prod == ''){
-    	res.json(prod)
+        res.json({error: 'Produto não existe.'})
     }
     else{
-        res.json({error: 'Produto não existe.'})}
+        res.json(prod)
+    }
 }
 
 exports.listarProds = async (req, res) => {
