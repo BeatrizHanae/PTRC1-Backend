@@ -7,7 +7,7 @@ module.exports = db.sequelize.define('suporte_treinamento', {
         NOME_CLIENTE: { type: Sequelize.STRING},
         NOME_EMPRESA: { type: Sequelize.STRING},
         CPF: { type: Sequelize.INTEGER},
-        DESCRIÇÃO: { type: Sequelize.STRING},
+        DESCRICAO: { type: Sequelize.STRING},
         ID_SUPORTE: {
             type: Sequelize.INTEGER,
             primaryKey: true,
